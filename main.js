@@ -4,7 +4,7 @@ import { camera } from './Core/Camera';
 import { renderer } from './Core/Renderer';
 import { plane } from './Geometry/Ground';
 import { controls } from './Controls/OrbitControls';
-import { ambientLight, changeLights, directionalLight, dirLightHelper } from './Core/Lights';
+import { changeLights } from './Core/Lights';
 import { changeMesh, mesh } from './Geometry/Geometries';
 
 
