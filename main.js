@@ -2,13 +2,13 @@ import * as THREE from 'three';
 import {scene} from "./Core/Scene"
 import { camera } from './Core/Camera';
 import { renderer } from './Core/Renderer';
-import { plane } from './Geometry/Ground';
+import { room } from './Geometry/Ground';
 import { controls } from './Controls/OrbitControls';
-import { changeLights } from './Core/Lights';
+import { ambientLight, changeLights } from './Core/Lights';
 import { changeMesh, mesh } from './Geometry/Geometries';
 
-
-scene.add(plane);
+scene.add(ambientLight);
+scene.add(room);
 scene.add(mesh);
 
 const keys = {};
@@ -17,7 +17,8 @@ window.addEventListener('keyup', (e) => (keys[e.key] = false));
 
 
 function animate(){
-
+    mesh.rotation.x += 0.01;
+    mesh.rotation.y += 0.01;
     changeLights(keys);
     changeMesh(keys);
     controls.update();

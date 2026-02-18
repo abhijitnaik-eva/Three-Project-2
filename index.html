@@ -1,19 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>My first three.js app</title>
-    <style>
-      body { margin: 0; }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  </head>
-  <body>
-    <script type="module" src="/main.js"></script>
-    <div class="absolute left-1/4 top-10 rounded-full h-20 w-1/2 bg-white flex flex-col justify-center items-center">
-        <p>Press : 1,2,3,4,5,6,7,8,9 to change the geometry</p>
-        <p>Press : a - Ambient, d - directional, s - spotlight, p - pointlight, r - RectAreaLight</p>
+
+<head>
+  <meta charset="utf-8">
+  <title>My first three.js app</title>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+  <script type="module" src="/main.js"></script>
+  <script>
+    function toggleLeft() {
+      document.getElementById("leftDropdown")
+        .classList.toggle("hidden");
+    }
+
+    function toggleRight() {
+      document.getElementById("rightDropdown")
+        .classList.toggle("hidden");
+    }
+  </script>
+
+  <div class="absolute left-1/4 top-10 rounded-full h-20 w-1/2 bg-white flex justify-evenly items-center">
+    <div class="relative w-1/2 pl-8 pr-2">
+      <button onclick="toggleLeft()" class="w-full bg-black hover:bg-white hover:border-2 border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
+        Geometry
+      </button>
+
+      <div id="leftDropdown" class="w-full absolute mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
+        <p>1 - Box</p>
+        <p>2 - Sphere</p>
+        <p>3 - Cone</p>
+        <p>4 - Cylinder</p>
+        <p>5 - Capsule</p>
+        <p>6 - Tetrahedron</p>
+        <p>7 - Octahedron</p>
+        <p>8 - Dodecahedron</p>
+        <p>9 - Icosahedron</p>
+      </div>
     </div>
-  </body>
+
+    <div class="relative w-1/2  pl-2 pr-8">
+      <button onclick="toggleRight()" class="w-full bg-black hover:bg-white hover:border-2 border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
+        Lights
+      </button>
+
+      <div id="rightDropdown" class="w-full absolute right-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-64">
+        <p>a - Ambient</p>
+        <p>d - Directional</p>
+        <p>s - Spotlight</p>
+        <p>p - PointLight</p>
+        <p>r - RectAreaLight</p>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
-    

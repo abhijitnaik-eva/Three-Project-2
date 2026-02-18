@@ -10,10 +10,9 @@ const geometryOcta = new THREE.OctahedronGeometry();
 const geometryDodeca = new THREE.DodecahedronGeometry();
 const geometryIcosa = new THREE.IcosahedronGeometry();
 
-const material = new THREE.MeshStandardMaterial({color : 'red'});
 
 export const mesh = new THREE.Mesh();
-mesh.material = material;
+mesh.material = new THREE.MeshStandardMaterial({color : 'grey'});;
 mesh.position.y = 3;
 mesh.castShadow = true;
 
