@@ -2,8 +2,8 @@ import * as THREE from 'three';
 
 const geometry = new THREE.PlaneGeometry(25, 25);
 const wallGeometry = new THREE.PlaneGeometry(25, 15);
-const material = new THREE.MeshStandardMaterial({color: 'green', side: THREE.DoubleSide, metalness: 0.9 });
-const wallMaterial = new THREE.MeshStandardMaterial({color: 'gray', side: THREE.DoubleSide, metalness: 0.9 });
+const material = new THREE.MeshStandardMaterial({color: '#2b2828', side: THREE.DoubleSide, metalness: 0.9 });
+const wallMaterial = new THREE.MeshStandardMaterial({color: '#1f1f1f', side: THREE.DoubleSide, metalness: 0.9 });
 export const room = new THREE.Object3D();
 const plane = new THREE.Mesh(geometry, material);
 

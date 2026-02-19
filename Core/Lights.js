@@ -60,14 +60,18 @@ export function changeLights(keys) {
 }
 
 function removeLights() {
+    //#region Lights
     scene.remove(directionalLight);
     scene.remove(ambientLight);
     scene.remove(pointLight);
     scene.remove(spotLight);
     scene.remove(rectAreaLight);
     scene.remove(hemisphereLight);
+    //#endregion 
 
+    //#region Light Helpers
     scene.remove(dirLightHelper);
     scene.remove(pointLightHelper);
     scene.remove(spotLighthelper);
+    //#endregion
 }
