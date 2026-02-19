@@ -24,7 +24,7 @@ function animate(){
     changeMesh(keys);
     changeMaterial(keys);
     changeCamera(keys);
-    controls.camera = camera;
+    controls.object = camera;
     controls.update();
     renderer.render(scene, camera);
 }

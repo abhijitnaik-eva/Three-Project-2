@@ -15,12 +15,14 @@ export const mesh = new THREE.Mesh();
 
 //#region Materials
 const basicMaterial = new THREE.MeshBasicMaterial({ color : '#355872'})
-const standardMaterial = new THREE.MeshStandardMaterial({ color : '#3754d6', roughness: 0, metalness: 0.5})
-const physicalMaterial = new THREE.MeshPhysicalMaterial({ color : '#A82323', iridescence: 1, clearcoat: 0.5})
+const standardMaterial = new THREE.MeshStandardMaterial({ color : '#22399e', roughness: 0, metalness: 0.7})
+const physicalMaterial = new THREE.MeshPhysicalMaterial({ color : '#A82323', iridescence: 1, clearcoat: 0.9})
 const phongMaterial = new THREE.MeshPhongMaterial({ color : '#61c049', shininess: 100})
 const toonMaterial = new THREE.MeshToonMaterial({ color : '#049ef4'})
 const lineDashedMaterial = new THREE.LineDashedMaterial({color: 0xffffff, scale: 1, dashSize: 3, gapSize: 1,})
 const normalMaterial = new THREE.MeshNormalMaterial()
+const lambertMaterial = new THREE.MeshLambertMaterial({color: '#f64004', emissive: '#5b408c'})
+const shadowMaterial = new THREE.ShadowMaterial();
 
 //#endregion
 
@@ -49,4 +51,6 @@ export function changeMaterial(keys){
     if(keys['.']) mesh.material = toonMaterial;
     if(keys[',']) mesh.material = lineDashedMaterial;
     if(keys['?']) mesh.material = normalMaterial;
+    if(keys['/']) mesh.material = lambertMaterial;
+    if(keys['+']) mesh.material = shadowMaterial;
 }
