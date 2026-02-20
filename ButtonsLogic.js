@@ -2,6 +2,7 @@ import { changeCameraBtn } from "./Core/Camera";
 import { changeLightsBtn } from "./Core/Lights";
 import { changeGeometryBtn, changeMaterialBtn } from "./Geometry/Geometries";
 
+//#region Geometries
 document.getElementById('boxButton').addEventListener('click', () => changeGeometryBtn('box'));
 document.getElementById('sphereButton').addEventListener('click', () => changeGeometryBtn('sphere'));
 document.getElementById('coneButton').addEventListener('click', () => changeGeometryBtn('cone'));
@@ -12,18 +13,21 @@ document.getElementById('octaButton').addEventListener('click', () => changeGeom
 document.getElementById('dodecaButton').addEventListener('click', () => changeGeometryBtn('dodecahedron'));
 document.getElementById('torusknotButton').addEventListener('click', () => changeGeometryBtn('torusknot'));
 document.getElementById('geometryRemoveButton').addEventListener('click', () => changeGeometryBtn('removeGeometry'));
+//#endregion
 
-
+//#region Lights
 document.getElementById('ambientButton').addEventListener('click', () => changeLightsBtn('ambient'));
 document.getElementById('directionalButton').addEventListener('click', () => changeLightsBtn('directional'));
 document.getElementById('spotButton').addEventListener('click', () => changeLightsBtn('spot'));
 document.getElementById('pointButton').addEventListener('click', () => changeLightsBtn('point'));
 document.getElementById('rectButton').addEventListener('click', () => changeLightsBtn('rect'));
 document.getElementById('removeLightButton').addEventListener('click', () => changeLightsBtn('removeLights'));
+//#endregion
 
 document.getElementById('perspectiveButton').addEventListener('click', () => changeCameraBtn('perspective'));
 document.getElementById('orthographicButton').addEventListener('click', () => changeCameraBtn('orthographic'));
 
+//#region Materials
 document.getElementById('basicMaterialButton').addEventListener('click', () => changeMaterialBtn('basic'));
 document.getElementById('standardMaterialButton').addEventListener('click', () => changeMaterialBtn('standard'));
 document.getElementById('physicalMaterialButton').addEventListener('click', () => changeMaterialBtn('physical'));
@@ -33,3 +37,4 @@ document.getElementById('lineMaterialButton').addEventListener('click', () => ch
 document.getElementById('normalMaterialButton').addEventListener('click', () => changeMaterialBtn('normal'));
 document.getElementById('lambertMaterialButton').addEventListener('click', () => changeMaterialBtn('lambert'));
 document.getElementById('shadowMaterialButton').addEventListener('click', () => changeMaterialBtn('shadow'));
+//#endregion

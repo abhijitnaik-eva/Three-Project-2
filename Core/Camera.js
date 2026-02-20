@@ -34,7 +34,7 @@ export function changeCamera(keys){
 
 export function changeCameraBtn(type){
     switch(type) {
-        case 'perspective' : camera = perspectiveCamera;
-        case 'orthographic' : camera = orthographicCamera;
+        case 'perspective' : camera = perspectiveCamera; break;
+        case 'orthographic' : camera = orthographicCamera; break;
     }
 }
