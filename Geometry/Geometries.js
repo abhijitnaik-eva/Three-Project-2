@@ -31,6 +31,12 @@ mesh.material = basicMaterial;
 mesh.position.y = 4;
 mesh.castShadow = true;
 
+const geometryText = document.getElementById('geometryInfo');
+const materialText = document.getElementById('materialInfo');
+
+updateGeometryText();
+updateMaterialText();
+
 export function changeMesh(keys){
     if(keys['0']) mesh.geometry = new THREE.BufferGeometry();
     if(keys['1']) mesh.geometry = geometryBox;
@@ -45,6 +51,7 @@ export function changeMesh(keys){
     if(keys['e']) {
 
     }
+    updateGeometryText();
 }
 
 export function changeMaterial(keys){
@@ -57,6 +64,7 @@ export function changeMaterial(keys){
     if(keys['?']) mesh.material = normalMaterial;
     if(keys['/']) mesh.material = lambertMaterial;
     if(keys['+']) mesh.material = shadowMaterial;
+    updateMaterialText();
 }
 
 export function changeGeometryBtn(type){
@@ -71,7 +79,9 @@ export function changeGeometryBtn(type){
     case 'dodecahedron': mesh.geometry = geometryDodeca; break;
     case 'torusknot': mesh.geometry = geometryTorusKnot; break;
     case 'removeGeometry': mesh.geometry = new THREE.BufferGeometry(); break;
+
 }
+    updateGeometryText();
 }
 
 export function changeMaterialBtn(type){
@@ -85,5 +95,15 @@ export function changeMaterialBtn(type){
     case 'normal': mesh.material = normalMaterial; break;
     case 'lambert': mesh.material = lambertMaterial; break;
     case 'shadow': mesh.material = shadowMaterial; break;
+
 }
+    updateMaterialText();
+}
+
+function updateGeometryText(){
+geometryText.textContent = mesh.geometry.type;
+}
+
+function updateMaterialText(){
+materialText.textContent = mesh.material.type;
 }

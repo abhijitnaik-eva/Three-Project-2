@@ -16,9 +16,10 @@ pointLight.position.set(2.5, 5, 0);
 pointLight.castShadow = true;
 
 
-const spotLight = new THREE.SpotLight('white', 100, 10, Math.PI / 4);
+const spotLight = new THREE.SpotLight('white', 100, 20, Math.PI / 4, 0.2, 1);
 const spotLighthelper = new THREE.SpotLightHelper(spotLight, 'red');
-spotLight.position.set(0, 20, 0); 
+spotLight.position.set(0, 10, 0); 
+spotLight.target.position.set(0,0,0);
 spotLight.castShadow = true;
 
 
@@ -30,6 +31,8 @@ const rectAreaLight = new THREE.RectAreaLight('white', 20, 10, 5);
 rectAreaLight.position.set(0, 20, 0);
 rectAreaLight.lookAt(0, 0, 0);
 
+
+const lightText = document.getElementById('lightInfo')
 
 export function changeLights(keys) {
     if (keys["x"]) {
@@ -56,7 +59,7 @@ export function changeLights(keys) {
     if (keys["h"]) {
         scene.add(hemisphereLight);
     }
-
+updateLightText();
 }
 
 function removeLights() {
@@ -99,4 +102,16 @@ export function changeLightsBtn(type){
     case 'removeLights': removeLights(); 
     break;
 }
+updateLightText();
+}
+
+function updateLightText(){
+    const activeLights = [];
+    if (scene.children.includes(ambientLight)) activeLights.push('Ambient');
+    if (scene.children.includes(directionalLight)) activeLights.push('Directional');
+    if (scene.children.includes(spotLight)) activeLights.push('Spot');
+    if (scene.children.includes(pointLight)) activeLights.push('Point');
+    if (scene.children.includes(rectAreaLight)) activeLights.push('RectArea');
+
+    lightText.textContent = (activeLights.length ? activeLights.join(', ') : 'None')
 }

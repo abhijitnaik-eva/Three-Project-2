@@ -23,6 +23,9 @@ orthographicCamera.lookAt(0, 0, 0);
 export let camera = new THREE.Camera()
 camera = perspectiveCamera;
 
+const cameraText = document.getElementById('cameraInfo')
+updateCameraText();
+
 export function changeCamera(keys){
     if(keys['-']) {
         camera = perspectiveCamera;
@@ -30,6 +33,7 @@ export function changeCamera(keys){
     if(keys['=']) {
         camera = orthographicCamera;
     }
+    updateCameraText();
 }
 
 export function changeCameraBtn(type){
@@ -37,4 +41,9 @@ export function changeCameraBtn(type){
         case 'perspective' : camera = perspectiveCamera; break;
         case 'orthographic' : camera = orthographicCamera; break;
     }
+    updateCameraText();
+}
+
+function updateCameraText(){
+cameraText.textContent = camera.type;
 }
