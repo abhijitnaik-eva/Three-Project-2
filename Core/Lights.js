@@ -75,3 +75,28 @@ function removeLights() {
     scene.remove(spotLighthelper);
     //#endregion
 }
+
+export function changeLightsBtn(type){
+    switch(type){
+    case 'ambient': 
+        scene.add(ambientLight); 
+    break;
+    case 'directional': 
+        scene.add(directionalLight); 
+        scene.add(dirLightHelper);
+    break;
+    case 'spot': 
+        scene.add(spotLight); 
+        scene.add(spotLighthelper);
+    break;
+    case 'point': 
+        scene.add(pointLight); 
+        scene.add(pointLightHelper);
+    break;
+    case 'rect': 
+        scene.add(rectAreaLight);
+    break;
+    case 'removeLights': removeLights(); 
+    break;
+}
+}

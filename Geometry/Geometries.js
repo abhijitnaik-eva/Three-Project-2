@@ -10,7 +10,7 @@ const geometryTetra = new THREE.TetrahedronGeometry();
 const geometryOcta = new THREE.OctahedronGeometry();
 const geometryDodeca = new THREE.DodecahedronGeometry();
 const geometryTorusKnot = new THREE.TorusKnotGeometry();
-export const mesh = new THREE.Mesh();
+const geometryEdge = new THREE.EdgesGeometry()
 //#endregion
 
 //#region Materials
@@ -23,9 +23,10 @@ const lineDashedMaterial = new THREE.LineDashedMaterial({color: 0xffffff, scale:
 const normalMaterial = new THREE.MeshNormalMaterial()
 const lambertMaterial = new THREE.MeshLambertMaterial({color: '#f64004', emissive: '#5b408c'})
 const shadowMaterial = new THREE.ShadowMaterial();
-
 //#endregion
 
+
+export const mesh = new THREE.Mesh();
 mesh.material = basicMaterial;
 mesh.position.y = 4;
 mesh.castShadow = true;
@@ -41,6 +42,9 @@ export function changeMesh(keys){
     if(keys['7']) mesh.geometry = geometryOcta;
     if(keys['8']) mesh.geometry = geometryDodeca;
     if(keys['9']) mesh.geometry = geometryTorusKnot;
+    if(keys['e']) {
+
+    }
 }
 
 export function changeMaterial(keys){
@@ -53,4 +57,33 @@ export function changeMaterial(keys){
     if(keys['?']) mesh.material = normalMaterial;
     if(keys['/']) mesh.material = lambertMaterial;
     if(keys['+']) mesh.material = shadowMaterial;
+}
+
+export function changeGeometryBtn(type){
+    switch(type) {
+    case 'box': mesh.geometry = geometryBox; break;
+    case 'sphere': mesh.geometry = geometrySphere; break;
+    case 'cone': mesh.geometry = geometryCone; break;
+    case 'cylinder': mesh.geometry = geometryCylinder; break;
+    case 'capsule': mesh.geometry = geometryCapsule; break;
+    case 'tetrahedron': mesh.geometry = geometryTetra; break;
+    case 'octahedron': mesh.geometry = geometryOcta; break;
+    case 'dodecahedron': mesh.geometry = geometryDodeca; break;
+    case 'torusknot': mesh.geometry = geometryTorusKnot; break;
+    case 'removeGeometry': mesh.geometry = new THREE.BufferGeometry(); break;
+}
+}
+
+export function changeMaterialBtn(type){
+    switch(type){
+    case 'basic': mesh.material = basicMaterial; break;
+    case 'standard': mesh.material = standardMaterial; break;
+    case 'physical': mesh.material = physicalMaterial; break;
+    case 'phong': mesh.material = phongMaterial; break;
+    case 'toon': mesh.material = toonMaterial; break;
+    case 'line': mesh.material = lineDashedMaterial; break;
+    case 'normal': mesh.material = normalMaterial; break;
+    case 'lambert': mesh.material = lambertMaterial; break;
+    case 'shadow': mesh.material = shadowMaterial; break;
+}
 }

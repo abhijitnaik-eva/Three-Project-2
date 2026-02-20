@@ -6,6 +6,7 @@ import { room } from './Geometry/Ground';
 import { controls } from './Controls/OrbitControls';
 import { ambientLight, changeLights } from './Core/Lights';
 import { changeMaterial, changeMesh, mesh } from './Geometry/Geometries';
+import './ButtonsLogic'
 
 scene.add(ambientLight);
 scene.add(room);
@@ -18,6 +19,7 @@ window.addEventListener('keyup', (e) => (keys[e.key] = false));
 
 
 function animate(){
+
     mesh.rotation.x += 0.01;
     mesh.rotation.y += 0.01;
     changeLights(keys);
@@ -26,6 +28,8 @@ function animate(){
     changeCamera(keys);
     controls.object = camera;
     controls.update();
+    renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.render(scene, camera);
 }
+
 renderer.setAnimationLoop( animate );

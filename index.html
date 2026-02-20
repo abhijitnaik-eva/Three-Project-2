@@ -15,31 +15,54 @@
 <body>
   <script type="module" src="/main.js"></script>
   <script>
-    function toggleDropdown(id) {
+  function toggleDropdown(id) {
+    const dropdowns = ["geometryDropdown", "lightDropdown", "cameraDropdown", "materialDropdown"];
 
-      const dropdowns = [
-        "geometryDropdown",
-        "lightDropdown",
-        "cameraDropdown",
-        "materialDropdown"
-      ];
-
-      dropdowns.forEach(drop => {
-        if (drop !== id) {
-          document.getElementById(drop).classList.add("hidden");
-        }
-      });
-
-      document.getElementById(id).classList.toggle("hidden");
-    }
-    document.addEventListener("click", function (event) {
-      if (!event.target.closest(".relative")) {
-        document.querySelectorAll('[id$="Dropdown"]').forEach(drop => {
-          drop.classList.add("hidden");
-        });
+    dropdowns.forEach(drop => {
+      if (drop !== id) {
+        document.getElementById(drop).classList.add("hidden");
       }
     });
-  </script>
+
+    document.getElementById(id).classList.toggle("hidden");
+  }
+
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest(".relative")) {
+      document.querySelectorAll('[id$="Dropdown"]').forEach(drop => {
+        drop.classList.add("hidden");
+      });
+    }
+  });
+
+  /* ✅ FIXED MODAL CODE */
+  document.addEventListener("DOMContentLoaded", function () {
+
+    const profileImage = document.getElementById("profileImage");
+    const modal = document.getElementById("imageModal");
+    const modalImage = document.getElementById("modalImage");
+    const closeModal = document.getElementById("closeModal");
+
+    profileImage.addEventListener("click", () => {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      modalImage.src = profileImage.src;
+    });
+
+    closeModal.addEventListener("click", () => {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+    });
+
+  });
+</script>
 
   <div class="absolute right-1/32 top-10 rounded-4xl h-48 w-1/8 bg-white flex flex-col justify-center items-center">
 
@@ -49,16 +72,16 @@
         Geometry
       </button>
       <div id="geometryDropdown" class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">1 - Box</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">2 - Sphere</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">3 - Cone</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">4 - Cylinder</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">5 - Capsule</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">6 - Tetrahedron</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">7 - Octahedron</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">8 - Dodecahedron</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">9 - TorusKnot</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg text-rose-500 font-bold hover:bg-rose-100">0 - Remove
+        <button id="boxButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">1 - Box</button>
+        <button id="sphereButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">2 - Sphere</button>
+        <button id="coneButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">3 - Cone</button>
+        <button id="cylinderButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">4 - Cylinder</button>
+        <button id="capsuleButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">5 - Capsule</button>
+        <button id="tetraButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">6 - Tetrahedron</button>
+        <button id="octaButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">7 - Octahedron</button>
+        <button id="dodecaButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">8 - Dodecahedron</button>
+        <button id="torusknotButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">9 - TorusKnot</button>
+        <button id="geometryRemoveButton" class="w-full text-left px-2 py-1 rounded-lg text-rose-500 font-bold hover:bg-rose-100">0 - Remove
           All</button>
       </div>
     </div>
@@ -68,15 +91,13 @@
         class="w-full bg-black hover:bg-white border-2 border-white hover:border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
         Lights
       </button>
-      <div id="lightDropdown"
-        class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">a - Ambient</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">d - Directional</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">s - Spotlight</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">p - PointLight</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">r - RectAreaLight</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg text-rose-500 font-bold hover:bg-rose-100">x - Remove
-          All</button>
+      <div id="lightDropdown" class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
+        <button id="ambientButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">a - Ambient</button>
+        <button id="directionalButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">d - Directional</button>
+        <button id="spotButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">s - Spotlight</button>
+        <button id="pointButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">p - PointLight</button>
+        <button id="rectButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">r - RectAreaLight</button>
+        <button id="removeLightButton" class="w-full text-left px-2 py-1 rounded-lg text-rose-500 font-bold hover:bg-rose-100">x - Remove All</button>
       </div>
     </div>
 
@@ -85,10 +106,9 @@
         class="w-full bg-black hover:bg-white border-2 border-white hover:border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
         Camera
       </button>
-      <div id="cameraDropdown"
-        class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">- Perspective</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">= Orthographic</button>
+      <div id="cameraDropdown" class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
+        <button id="perspectiveButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">- Perspective</button>
+        <button id="orthographicButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">= Orthographic</button>
       </div>
     </div>
 
@@ -97,29 +117,39 @@
         class="w-full bg-black hover:bg-white border-2 border-white hover:border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
         Materials
       </button>
-      <div id="materialDropdown"
-        class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">[ - Basic</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">] - Standard</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">; - Physical</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">: - Phong</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">. - Toon</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">, - Line</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">? - Normal</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">/ - Lambert</button>
-        <button class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">+ - shadow</button>
+      <div id="materialDropdown" class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
+        <button id="basicMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">[ - Basic</button>
+        <button id="standardMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">] - Standard</button>
+        <button id="physicalMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">; - Physical</button>
+        <button id="phongMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">: - Phong</button>
+        <button id="toonMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">. - Toon</button>
+        <button id="lineMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">, - Line</button>
+        <button id="normalMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">? - Normal</button>
+        <button id="lambertMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">/ - Lambert</button>
+        <button id="shadowMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200">+ - Shadow</button>
       </div>
     </div>
   </div>
 
 
-  <div class="absolute left-1/32 top-10 rounded-4xl h-40 w-1/8 bg-white flex flex-col justify-center items-center">
-    <img src="./Images/Profile.jpg" alt="Profile" class="w-16 h-16 rounded-full object-cover" />
+  <div class="absolute left-1/32 top-10 rounded-4xl h-64 w-1/8 bg-white flex flex-col justify-center items-center">
+
+    <img id="profileImage"
+      class="md:w-36 md:h-36 sm:w-30 sm:h-30 rounded-full object-cover cursor-pointer hover:scale-105 transition duration-300"
+      src="./Images/pfp.png" alt="Profile" />
+
     <div class="flex flex-col justify-center items-center">
       <h2 class="text-lg font-bold text-gray-800">Abhijit Naik</h2>
-      <p class="w-full text-sm text-center text-gray-500 ">Software Engineer - Configurator Design </p>
+      <p class="w-4/5 px-4 text-sm text-center text-gray-500">Software Engineer - Configurator Design</p>
     </div>
   </div>
+  <div id="imageModal" class="fixed inset-0 hidden justify-center items-center z-50">
+    <div class="relative">
+      <button id="closeModal" class="absolute -top-10 right-0 text-white text-3xl font-bold">&times;</button>
+      <img id="modalImage" class="max-h-[90vh] max-w-[90vw] rounded-xl shadow-2xl" />
+    </div>
+  </div>
+
 </body>
 
 </html>
