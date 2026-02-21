@@ -24,8 +24,14 @@ document.getElementById('rectButton').addEventListener('click', () => changeLigh
 document.getElementById('removeLightButton').addEventListener('click', () => changeLightsBtn('removeLights'));
 //#endregion
 
-document.getElementById('perspectiveButton').addEventListener('click', () => changeCameraBtn('perspective'));
-document.getElementById('orthographicButton').addEventListener('click', () => changeCameraBtn('orthographic'));
+const perspectiveButtons = document.getElementsByClassName('perspectiveButton');
+const orthographicButtons = document.getElementsByClassName('orthographicButton');
+Array.from(perspectiveButtons).forEach(btn => {
+    btn.addEventListener('click', () => changeCameraBtn('perspective'));
+});
+Array.from(orthographicButtons).forEach(btn => {
+    btn.addEventListener('click', () => changeCameraBtn('orthographic'));
+});
 
 //#region Materials
 document.getElementById('basicMaterialButton').addEventListener('click', () => changeMaterialBtn('basic'));

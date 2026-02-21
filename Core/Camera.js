@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { scene } from './Scene';
+import { extrudeMesh } from '../Geometry/Extruded';
 
 //#region Perspective Camera
 const perspectiveCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -9,12 +10,12 @@ perspectiveCamera.rotation.x = Math.PI/4;
 //#endregion
 
 //#region Orthographic Camera
-const width = 50, height = 50;
+const width = 30, height = 30;
 const aspect = window.innerWidth / window.innerHeight;
 const orthographicCamera = new THREE.OrthographicCamera(
     -width/2 * aspect, width/2 * aspect,
     height/2, -height/2,
-    1, 1000);
+    0.1, 1000);
 orthographicCamera.position.set(20, 50, 50);
 orthographicCamera.lookAt(0, 0, 0);
 //#endregion
