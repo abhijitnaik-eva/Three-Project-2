@@ -1,6 +1,6 @@
 import { changeCameraBtn } from "./Core/Camera";
 import { changeLightsBtn } from "./Core/Lights";
-import { changeGeometryBtn, changeMaterialBtn } from "./Geometry/Geometries";
+import { changeGeometryBtn, changeMaterialBtn } from "./Project-1/Geometries";
 
 //#region Geometries
 document.getElementById('boxButton').addEventListener('click', () => changeGeometryBtn('box'));

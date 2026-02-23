@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { scene } from './Scene';
-import { extrudeMesh } from '../Geometry/Extruded';
 
 //#region Perspective Camera
 const perspectiveCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { scene } from '../Core/Scene';
 
 //#region Geometries
 const geometryBox = new THREE.BoxGeometry(2,2,2);
@@ -26,7 +27,7 @@ const shadowMaterial = new THREE.ShadowMaterial();
 //#endregion
 
 
-export const mesh = new THREE.Mesh();
+const mesh = new THREE.Mesh();
 mesh.material = basicMaterial;
 mesh.position.y = 4;
 mesh.castShadow = true;
@@ -106,4 +107,12 @@ geometryText.textContent = mesh.geometry.type;
 
 function updateMaterialText(){
 materialText.textContent = mesh.material.type;
+}
+
+export function createGeometries(){
+    scene.add(mesh);
+}
+
+export function getMesh(){
+    return mesh;
 }

@@ -2,30 +2,38 @@ import * as THREE from 'three';
 import {scene} from "./Core/Scene"
 import { camera, changeCamera } from './Core/Camera';
 import { renderer } from './Core/Renderer';
-import { room } from './Geometry/Ground';
 import { controls } from './Controls/OrbitControls';
 import { ambientLight, changeLights } from './Core/Lights';
-import { changeMaterial, changeMesh, mesh } from './Geometry/Geometries';
+import { changeMaterial, changeMesh, getMesh } from './Project-1/Geometries';
 import './ButtonsLogic'
-import { extrudeMesh } from './Geometry/Extruded';
+import './Project-2/Extruded1';
+import './Project-2/Extruded2';
+import './Project-2/ExtrudedController';
+import './ProjectController';
 
 scene.add(ambientLight);
-// scene.add(room);
-// scene.add(mesh);
 
+let project = 2;
 
 const keys = {};
 window.addEventListener('keydown', (e) => (keys[e.key] = true));
 window.addEventListener('keyup', (e) => (keys[e.key] = false));
-scene.add(extrudeMesh);
+
+export function setProject(num){
+    project = num
+}
+const mesh = getMesh();
 
 function animate(){
     
-    // mesh.rotation.x += 0.01;
-    // mesh.rotation.y += 0.01;
-    // changeLights(keys);
-    // changeMesh(keys);
-    // changeMaterial(keys);
+    if(project === 1){
+        mesh.rotation.x += 0.01;
+        mesh.rotation.y += 0.01;
+        changeLights(keys);
+        changeMesh(keys);
+        changeMaterial(keys);
+    }
+    
     changeCamera(keys);
     controls.object = camera;
     controls.update();
