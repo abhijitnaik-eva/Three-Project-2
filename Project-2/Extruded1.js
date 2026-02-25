@@ -4,22 +4,22 @@ import { SUBTRACTION, Brush, Evaluator, INTERSECTION } from 'three-bvh-csg';
 
 let height;
 let width;
-let thickness;
+let thickness = 5;
 let radius;
 export let extrudeMesh = null;
 
-createAxesHelper();
-
+let axesHelper;
 export function createAxesHelper(){
-    const axesHelper = new THREE.AxesHelper(10);
-    axesHelper.position.set(-1,0,-1)
+    axesHelper = new THREE.AxesHelper(10);
+    axesHelper.position.set(-2,0, -(thickness/2 + 1))
     axesHelper.setColors('red', 'blue', 'green');
     scene.add(axesHelper)
 }
-
+export function removeAxesHelper(){
+ if(scene.children.includes(axesHelper)) scene.remove(axesHelper);
+}
 //#region Holes Extruded
 export function createExtrudeShape(newWidth, newHeight, newThickness, newRadius) {
-
     if(!checkRulesHolesEx(newWidth, newHeight, newRadius)) return;
     deleteExtrudeShape();
 

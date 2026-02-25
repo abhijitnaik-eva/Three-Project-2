@@ -1,8 +1,11 @@
 import * as THREE from 'three';
 import { scene } from './Scene';
 
+
+const far = 1000000;
+const near = 0.1;
 //#region Perspective Camera
-const perspectiveCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const perspectiveCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, near, far);
 perspectiveCamera.position.z = 10;
 perspectiveCamera.position.y = 10;
 perspectiveCamera.rotation.x = Math.PI/4;
@@ -14,8 +17,8 @@ const aspect = window.innerWidth / window.innerHeight;
 const orthographicCamera = new THREE.OrthographicCamera(
     -width/2 * aspect, width/2 * aspect,
     height/2, -height/2,
-    0.1, 1000);
-orthographicCamera.position.set(20, 50, 50);
+    near, far);
+orthographicCamera.position.set(20, 50, far/2);
 orthographicCamera.lookAt(0, 0, 0);
 //#endregion
 

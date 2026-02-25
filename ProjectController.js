@@ -6,30 +6,40 @@ import { createRoom } from "./Project-1/Ground";
 import { createAxesHelper } from "./Project-2/Extruded1";
 
 
-    document.getElementById("tutorial").hidden = true;
-    document.getElementById("info").hidden = true;
+document.getElementById("tutorial").hidden = true;
+document.getElementById("info").hidden = true;
 
 const extrudeContainer = document.getElementById('ExtrudeContainer');
 const design9Container = document.getElementById('9DesignContainer');
+const dashboard = document.getElementById('dashboard');
 
-document.getElementById('project1').addEventListener('click', () => {
-    extrudeContainer.hidden = true;
-    design9Container.hidden = false;
-    scene.clear();
-    scene.add(ambientLight);
-    createRoom();
-    createGeometries();
-    setProject(1);
 
-    document.getElementById("tutorial").hidden = false;
-    document.getElementById("info").hidden = false;
 
-})
-document.getElementById('project2').addEventListener('click', () => {
-    extrudeContainer.hidden = false;
-    design9Container.hidden = true;
-    scene.clear();
-    scene.add(ambientLight);
-    createAxesHelper();
+document.querySelectorAll('.project1').forEach(button => {
+    button.addEventListener('click', () => {
+        extrudeContainer.hidden = true;
+        design9Container.hidden = false;
+        dashboard.hidden = true;
 
-})
+        scene.clear();
+        scene.add(ambientLight);
+        createRoom();
+        createGeometries();
+        setProject(1);
+
+        document.getElementById("tutorial").hidden = false;
+        document.getElementById("info").hidden = false;
+    });
+});
+
+
+document.querySelectorAll('.project2').forEach(button => {
+    button.addEventListener('click', () => {
+        dashboard.hidden = true;
+        extrudeContainer.hidden = false;
+        design9Container.hidden = true;
+
+        scene.clear();
+        scene.add(ambientLight);
+    });
+});

@@ -8,7 +8,7 @@ const directionalLight = new THREE.DirectionalLight('white', 5);
 directionalLight.position.set(10, 20, 10)
 directionalLight.castShadow = true;
 directionalLight.lookAt(0, 0, 0);
-const dirLightHelper = new THREE.DirectionalLightHelper(directionalLight, 2, 'red');
+const dirLightHelper = new THREE.DirectionalLightHelper(directionalLight, 2, 'white');
 
 const pointLight = new THREE.PointLight('white', 200, 10);
 const pointLightHelper = new THREE.PointLightHelper(pointLight, 5, 'yellow');

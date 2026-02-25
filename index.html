@@ -2,322 +2,541 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>My first three.js app</title>
-  <style>
-    body {
-      margin: 0;
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body>
-  <script type="module" src="/main.js"></script>
-  <script>
-    function toggleDropdown(id) {
-      const dropdowns = ["geometryDropdown", "lightDropdown", "cameraDropdown", "materialDropdown", "developerDropdown"];
+    <script type="module" src="/main.js"></script>
+    <script>
+        function toggleDropdown(id) {
+            const dropdowns = ["geometryDropdown", "lightDropdown", "cameraDropdown", "materialDropdown", "developerDropdown"];
 
-      dropdowns.forEach(drop => {
-        if (drop !== id) {
-          document.getElementById(drop).classList.add("hidden");
+            dropdowns.forEach(drop => {
+                if (drop !== id) {
+                    document.getElementById(drop).classList.add("hidden");
+                }
+            });
+
+            document.getElementById(id).classList.toggle("hidden");
         }
-      });
 
-      document.getElementById(id).classList.toggle("hidden");
-    }
-
-    document.addEventListener("click", function (event) {
-      if (!event.target.closest(".relative")) {
-        document.querySelectorAll('[id$="Dropdown"]').forEach(drop => {
-          drop.classList.add("hidden");
+        document.addEventListener("click", function (event) {
+            if (!event.target.closest(".relative")) {
+                document.querySelectorAll('[id$="Dropdown"]').forEach(drop => {
+                    drop.classList.add("hidden");
+                });
+            }
         });
-      }
-    });
 
-    document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
 
-      const profileImage = document.getElementById("profileImage");
-      const modal = document.getElementById("imageModal");
-      const modalImage = document.getElementById("modalImage");
-      const closeModal = document.getElementById("closeModal");
+            const profileImage = document.getElementById("profileImage");
+            const modal = document.getElementById("imageModal");
+            const modalImage = document.getElementById("modalImage");
+            const closeModal = document.getElementById("closeModal");
 
-      profileImage.addEventListener("click", () => {
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-        modalImage.src = profileImage.src;
-      });
+            profileImage.addEventListener("click", () => {
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
+                modalImage.src = profileImage.src;
+            });
 
-      closeModal.addEventListener("click", () => {
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
-      });
+            closeModal.addEventListener("click", () => {
+                modal.classList.add("hidden");
+                modal.classList.remove("flex");
+            });
 
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
-          modal.classList.add("hidden");
-          modal.classList.remove("flex");
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex");
+                }
+            });
+
+        });
+    </script>
+
+    <div id="dashboard" class="absolute z-50 min-h-screen w-full bg-slate-950 text-white overflow-hidden p-8">
+        <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(30,41,59,0.6),transparent_50%),radial-gradient(circle_at_80%_80%,rgba(15,23,42,0.7),transparent_50%)]">
+        </div>
+        <div class="relative z-10 max-w-6xl mx-auto">
+            <div class="flex justify-between items-center mb-12">
+                    <div><h1 class="text-4xl font-bold"><span class="text-indigo-400">Abhijit Naik</span></h1>
+                    <p class="text-slate-400 mt-1">Projects dashboard</p>
+                </div>
+                <h2 class="text-2xl font-semibold bg-white/10 px-6 py-2 rounded-xl backdrop-blur-md">
+                    Projects
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div
+                    class="project1 group bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="relative">
+                        <img src="./Images/project1.png"
+                            class="w-full h-48 object-cover transition duration-500 group-hover:scale-105" />
+                        <div class="absolute inset-0"></div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <p class="text-sm text-slate-400">
+                            Can use to show behaviour of geometry, light, camera, materials.
+                        </p>
+                        <h3 class="text-lg font-semibold text-white">
+                            9 Designs Project
+                        </h3>
+                        <div class="text-sm text-slate-500 flex justify-between">
+                            <span>Start: Feb 18, 2024</span>
+                            <span>End: Feb 19, 2024</span>
+                        </div>
+                        <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                            <div
+                                class="bg-green-500 h-2 rounded-full w-0 transition-all duration-500 animate-fill-100 group-hover:w-[100%]">
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-2">
+                            <button class="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition">
+                                <span
+                                    class="w-6 h-6 flex items-center justify-center rounded-full border border-slate-600 text-xs">
+                                    i
+                                </span>
+                                Info
+                            </button>
+                            <span class="text-sm text-slate-500">
+                                100% Complete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="project2 group bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="relative">
+                        <img src="./Images/project2.png"
+                            class="w-full h-48 object-cover transition duration-500 group-hover:scale-105" />
+                        <div class="absolute inset-0"></div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <p class="text-sm text-slate-400">
+                            This project includes various extrusion.
+                        </p>
+                        <h3 class="text-lg font-semibold text-white">
+                            Extrusion Projects
+                        </h3>
+                        <div class="text-sm text-slate-500 flex justify-between">
+                            <span>Start: Feb 21, 2024</span>
+                            <span>End: Feb 25, 2024</span>
+                        </div>
+                        <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+                            <div
+                                class="bg-indigo-500 h-2 rounded-full w-0 transition-all duration-500 animate-fill-75 group-hover:w-[75%]">
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-2">
+                            <button class="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition">
+                                <span
+                                    class="w-6 h-6 flex items-center justify-center rounded-full border border-slate-600 text-xs">
+                                    i
+                                </span>
+                                Info
+                            </button>
+                            <span class="text-sm text-slate-500">
+                                75% Complete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="devInfo">
+        <div id="developer"
+            class="absolute left-1/32 top-10 rounded-4xl h-64 w-1/8 bg-white flex flex-col justify-center items-center">
+
+            <img id="profileImage"
+                class="md:w-36 md:h-36 sm:w-30 sm:h-30 rounded-full object-cover cursor-pointer hover:scale-105 transition duration-300"
+                src="./Images/pfp.png" alt="Profile" />
+
+            <div class="flex flex-col justify-center items-center">
+                <h2 class="text-lg font-bold text-gray-800">Abhijit Naik</h2>
+                <p class="w-4/5 px-4 text-sm text-center text-gray-500">Software Engineer - Configurator Design</p>
+            </div>
+        </div>
+        <div id="imageModal" class="fixed inset-0 hidden justify-center items-center z-50">
+            <div class="relative">
+                <button id="closeModal" class="absolute -top-10 right-0 text-white text-3xl font-bold">&times;</button>
+                <img id="modalImage" class="max-h-[90vh] max-w-[90vw] rounded-xl shadow-2xl" />
+            </div>
+        </div>
+        <div id="developerMenu"
+            class="absolute left-1/32 top-72 my-4 rounded-full w-1/8 border-2 border-white bg-white flex flex-col justify-center items-center">
+            <div class="relative w-full">
+                <button onclick="toggleDropdown('developerDropdown')"
+                    class="w-full bg-black border-black border-2 rounded-full text-white px-4 py-2 hover:bg-white hover:text-black">
+                    Projects
+                </button>
+                <div id="developerDropdown"
+                    class="hidden absolute mt-2 w-full bg-white rounded-3xl shadow-lg flex flex-col p-2 space-y-2">
+                    <button
+                        class="project1 bg-gray-100 px-4 py-2 text-left rounded-full hover:bg-gray-700 hover:text-white">
+                        Project 1
+                    </button>
+                    <button
+                        class="project2 bg-gray-100 px-4 py-2 text-left rounded-full hover:bg-gray-700 hover:text-white">
+                        Project 2
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="9DesignContainer">
+        <div id="tutorial"
+            class="absolute right-1/32 top-10 rounded-4xl h-64 w-1/8 bg-white flex flex-col justify-center items-center">
+
+            <p class="px-4 text-slate-800 font-bold">Tutorial</p>
+            <p class="px-4 py-2 text-slate-800 text-xs text-center">Click these buttons on keyboard or just click UI
+                buttons
+                to
+                operate.</p>
+            <div class="relative w-5/6 py-1">
+                <button onclick="toggleDropdown('geometryDropdown')"
+                    class="w-full bg-black hover:bg-white border-2 border-white hover:border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
+                    Geometry
+                </button>
+                <div id="geometryDropdown"
+                    class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
+                    <p class="border-b border-black pb-2 mb-2 font-medium">Press keys</p>
+                    <button id="boxButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">1</span> Box</button>
+                    <button id="sphereButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">2</span> Sphere</button>
+                    <button id="coneButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">3</span> Cone</button>
+                    <button id="cylinderButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">4</span>Cylinder</button>
+                    <button id="capsuleButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">5</span> Capsule</button>
+                    <button id="tetraButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">6</span> Tetrahedron</button>
+                    <button id="octaButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">7</span> Octahedron</button>
+                    <button id="dodecaButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">8</span> Dodecahedron</button>
+                    <button id="torusknotButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">9</span> TorusKnot</button>
+                    <button id="geometryRemoveButton"
+                        class="w-full text-left px-2 py-1 rounded-lg text-rose-500 font-bold hover:bg-rose-100"><span
+                            class="bg-red-500 text-white font-bolt rounded-sm px-2 mr-2">0</span> Remove
+                        All</button>
+                </div>
+            </div>
+
+            <div class="relative w-5/6 py-1">
+                <button onclick="toggleDropdown('lightDropdown')"
+                    class="w-full bg-black hover:bg-white border-2 border-white hover:border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
+                    Lights
+                </button>
+                <div id="lightDropdown"
+                    class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
+                    <p class="border-b border-black pb-2 mb-2 font-medium">Press keys</p>
+                    <button id="ambientButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">a</span> Ambient</button>
+                    <button id="directionalButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">d</span> Directional</button>
+                    <button id="spotButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">s</span> Spotlight</button>
+                    <button id="pointButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">p</span> PointLight</button>
+                    <button id="rectButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">r</span> RectAreaLight</button>
+                    <button id="removeLightButton"
+                        class="w-full text-left px-2 py-1 rounded-lg text-rose-500 font-bold hover:bg-rose-100"><span
+                            class="bg-red-500 text-white font-bolt rounded-sm px-2 mr-2">x</span> Remove All</button>
+                </div>
+            </div>
+
+            <div class="relative w-5/6 py-1">
+                <button onclick="toggleDropdown('cameraDropdown')"
+                    class="w-full bg-black hover:bg-white border-2 border-white hover:border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
+                    Camera
+                </button>
+                <div id="cameraDropdown"
+                    class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
+                    <p class="border-b border-black pb-2 mb-2 font-medium">Press keys</p>
+                    <button class="perspectiveButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">-</span> Perspective</button>
+                    <button class="orthographicButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">=</span> Orthographic</button>
+                </div>
+            </div>
+
+            <div class="relative w-5/6 py-1">
+                <button onclick="toggleDropdown('materialDropdown')"
+                    class="w-full bg-black hover:bg-white border-2 border-white hover:border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
+                    Materials
+                </button>
+                <div id="materialDropdown"
+                    class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
+                    <p class="border-b border-black pb-2 mb-2 font-medium">Press keys</p>
+                    <button id="basicMaterialButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">[</span>Basic</button>
+                    <button id="standardMaterialButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">]</span>Standard</button>
+                    <button id="physicalMaterialButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">;</span> Physical</button>
+                    <button id="phongMaterialButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">:</span> Phong</button>
+                    <button id="toonMaterialButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">.</span> Toon</button>
+                    <button id="lineMaterialButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">,</span> Line</button>
+                    <button id="normalMaterialButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">?</span> Normal</button>
+                    <button id="lambertMaterialButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">/</span> Lambert</button>
+                    <button id="shadowMaterialButton"
+                        class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
+                            class="bg-black text-white font-bolt rounded-sm px-2 mr-2">+</span> Shadow</button>
+                </div>
+            </div>
+        </div>
+        <div id="info"
+            class="absolute right-1/32 bottom-10 w-60 h-110 bg-white rounded-3xl shadow-xl flex flex-col justify-start items-center p-6 space-y-4">
+
+            <h2 class="text-xl font-bold text-gray-900 mb-2">Scene Info</h2>
+            <p class="font-medium text-left w-full">Geometry:</p>
+            <p id="geometryInfo" class="w-full text-gray-800 font-medium bg-gray-100 px-3 py-1 rounded-lg shadow-inner">
+                Geometry: -</p>
+            <p class="font-medium text-left w-full">Material:</p>
+            <p id="materialInfo" class="w-full text-gray-800 font-medium bg-gray-100 px-3 py-1 rounded-lg shadow-inner">
+                Material: -</p>
+            <p class="font-medium text-left w-full"> Camera: </p>
+            <p id="cameraInfo" class="w-full text-gray-800 font-medium bg-gray-100 px-3 py-1 rounded-lg shadow-inner">
+                Camera:
+                -
+            </p>
+            <p class="font-medium text-left w-full">Light: </p>
+            <p id="lightInfo" class="w-full text-gray-800 font-medium bg-gray-100 px-3 py-1 rounded-lg shadow-inner">
+                Light: -
+            </p>
+        </div>
+    </div>
+    <div id="ExtrudeContainer">
+        <div id="dimensions"
+            class="absolute right-1/32 top-10 w-80 p-6 bg-white rounded-3xl shadow-xl flex flex-col gap-4 z-10">
+            <h2 class="text-xl font-semibold text-gray-800 text-center border-b border-slate-300 pb-4">Enter Dimensions
+            </h2>
+            <div class="flex flex-col">
+                <label for="widthInput" class="mb-1 text-gray-700 font-medium">Width</label>
+                <input type="text" id="widthInput" placeholder="Enter width"
+                    class="p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+            </div>
+            <div class="flex flex-col">
+                <label for="heightInput" class="mb-1 text-gray-700 font-medium">Height</label>
+                <input type="text" id="heightInput" placeholder="Enter height"
+                    class="p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+            </div>
+            <div class="flex flex-col">
+                <label for="radiusInput" class="mb-1 text-gray-700 font-medium">Radius of Hole</label>
+                <input type="text" id="radiusInput" placeholder="Enter radius"
+                    class="p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+            </div>
+
+            <div class="flex flex-col">
+                <label for="thicknessInput" class="mb-1 text-gray-700 font-medium">Thickness</label>
+                <input type="text" id="thicknessInput" placeholder="Enter Thickness"
+                    class="p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+            </div>
+            <button id="updateBtn"
+                class="mt-4 bg-black text-white font-semibold py-2 rounded-lg hover:bg-white hover:border-black border-white border-2 hover:text-black transition duration-200 shadow-md">
+                Update Mesh
+            </button>
+            <div class="w-full">
+                <div class="p-2 mb-4 font-medium">Camera Mode: </div>
+                <span
+                    class="perspectiveButton px-4 py-2 bg-black font-medium text-white rounded-lg border-2 border-white hover:cursor-pointer hover:border-black hover:bg-white hover:text-black">P</span>
+                <span
+                    class="orthographicButton px-4 py-2 bg-black font-medium text-white rounded-lg border-2 border-white hover:cursor-pointer hover:border-black hover:bg-white hover:text-black">O</span>
+            </div>
+        </div>
+        <div id="dimensionsCut"
+            class="absolute right-1/32 top-10 w-80 p-6 bg-white rounded-3xl shadow-xl flex flex-col gap-4 z-10">
+            <h2 class="text-xl font-semibold text-gray-800 text-center border-b border-slate-300 pb-4">Enter Dimensions
+            </h2>
+            <div class="flex flex-col">
+                <label for="widthInput" class="mb-1 text-gray-700 font-medium">Width</label>
+                <input type="text" placeholder="Enter width"
+                    class="widthInput p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+            </div>
+            <div class="flex flex-col">
+                <label for="heightInput" class="mb-1 text-gray-700 font-medium">Height</label>
+                <input type="text" placeholder="Enter height"
+                    class="heightInput p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+            </div>
+
+            <div class="flex flex-col">
+                <label for="thicknessInput" class="mb-1 text-gray-700 font-medium">Thickness</label>
+                <input type="text" placeholder="Enter Thickness"
+                    class="thicknessInput p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+            </div>
+
+            <div class="flex flex-col">
+                <p class="mb-1 text-gray-700 font-medium">Cut Angles : </p>
+                <div class="flex w-full">
+                    <input type="text" placeholder="Cut Angle 1"
+                        class="cutInput1 w-1/2 p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+                    <input type="text" placeholder="Cut Angle 2"
+                        class="cutInput2 w-1/2  p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+                </div>
+            </div>
+            <button id="updateBtnE2"
+                class="mt-4 bg-black text-white font-semibold py-2 rounded-lg hover:bg-white hover:border-black border-white border-2 hover:text-black transition duration-200 shadow-md">
+                Update Mesh
+            </button>
+            <div class="w-full">
+                <div class="p-2 mb-4 font-medium">Camera Mode: </div>
+                <span
+                    class="perspectiveButton px-4 py-2 bg-black font-medium text-white rounded-lg border-2 border-white hover:cursor-pointer hover:border-black hover:bg-white hover:text-black">P</span>
+                <span
+                    class="orthographicButton px-4 py-2 bg-black font-medium text-white rounded-lg border-2 border-white hover:cursor-pointer hover:border-black hover:bg-white hover:text-black">O</span>
+            </div>
+        </div>
+        <div id="dimensionsCutE3"
+            class="absolute right-1/32 top-10 w-80 p-6 bg-white rounded-3xl shadow-xl flex flex-col gap-4 z-10">
+            <h2 class="text-xl font-semibold text-gray-800 text-center border-b border-slate-300 pb-4">Enter Dimensions
+            </h2>
+            <div class="flex flex-col">
+                <label for="widthInput" class="mb-1 text-gray-700 font-medium">Width</label>
+                <input type="text" placeholder="Enter width"
+                    class="widthInputE3 p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+            </div>
+            <div class="flex flex-col">
+                <label for="heightInput" class="mb-1 text-gray-700 font-medium">Height</label>
+                <input type="text" placeholder="Enter height"
+                    class="heightInputE3 p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+            </div>
+            <div class="flex flex-col">
+                <label for="thicknessInput" class="mb-1 text-gray-700 font-medium">Thickness</label>
+                <input type="text" placeholder="Enter Thickness"
+                    class="thicknessInputE3 p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+            </div>
+            <div class="flex flex-col">
+                <p class="mb-1 text-gray-700 font-medium">H1 and H2 </p>
+                <div class="flex w-full">
+                    <input type="text" placeholder="H1"
+                        class="H1 w-1/2 p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+                    <input type="text" placeholder="H2"
+                        class="H2 w-1/2  p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <p class="mb-1 text-gray-700 font-medium">W1 and W2 </p>
+                <div class="flex w-full">
+                    <input type="text" placeholder="W1"
+                        class="W1 w-1/2 p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+                    <input type="text" placeholder="W2"
+                        class="W2 w-1/2  p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
+                </div>
+            </div>
+            <button id="updateBtnE3"
+                class="mt-4 bg-black text-white font-semibold py-2 rounded-lg hover:bg-white hover:border-black border-white border-2 hover:text-black transition duration-200 shadow-md">
+                Update Mesh
+            </button>
+            <div class="w-full">
+                <div class="p-2 mb-4 font-medium">Camera Mode: </div>
+                <span
+                    class="perspectiveButton px-4 py-2 bg-black font-medium text-white rounded-lg border-2 border-white hover:cursor-pointer hover:border-black hover:bg-white hover:text-black">P</span>
+                <span
+                    class="orthographicButton px-4 py-2 bg-black font-medium text-white rounded-lg border-2 border-white hover:cursor-pointer hover:border-black hover:bg-white hover:text-black">O</span>
+            </div>
+        </div>
+
+        <div id="extrudeSelector"
+            class="absolute left-1/2 -translate-x-1/2 bottom-10 rounded-3xl px-6 py-3 bg-white flex flex-col items-center w-max">
+            <div class="font-semibold mb-2">Project 2</div>
+            <div class="flex gap-4">
+                <button id="E1"
+                    class="h-12 w-16 bg-black text-white rounded-full border-2 border-black hover:bg-white hover:text-black font-semibold text-xl">
+                    1
+                </button>
+                <button id="E2"
+                    class="h-12 w-16 bg-black text-white rounded-full border-2 border-black hover:bg-white hover:text-black font-semibold text-xl">
+                    2
+                </button>
+                <button id="E3"
+                    class="h-12 w-16 bg-black text-white rounded-full border-2 border-black hover:bg-white hover:text-black font-semibold text-xl">
+                    3
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <style>
+        @keyframes darkMove {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 100% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
         }
-      });
 
-    });
-  </script>
+        .animate-darkMove {
+            animation: darkMove 18s ease-in-out infinite;
+        }
 
+        @keyframes fill-100 {
+            0% {
+                width: 0;
+            }
 
+            100% {
+                width: 100%;
+            }
+        }
 
+        @keyframes fill-75 {
+            0% {
+                width: 0;
+            }
 
-  <div id="developer"
-    class="absolute left-1/32 top-10 rounded-4xl h-64 w-1/8 bg-white flex flex-col justify-center items-center">
+            100% {
+                width: 75%;
+            }
+        }
 
-    <img id="profileImage"
-      class="md:w-36 md:h-36 sm:w-30 sm:h-30 rounded-full object-cover cursor-pointer hover:scale-105 transition duration-300"
-      src="./Images/pfp.png" alt="Profile" />
-
-    <div class="flex flex-col justify-center items-center">
-      <h2 class="text-lg font-bold text-gray-800">Abhijit Naik</h2>
-      <p class="w-4/5 px-4 text-sm text-center text-gray-500">Software Engineer - Configurator Design</p>
-    </div>
-  </div>
-  <div id="imageModal" class="fixed inset-0 hidden justify-center items-center z-50">
-    <div class="relative">
-      <button id="closeModal" class="absolute -top-10 right-0 text-white text-3xl font-bold">&times;</button>
-      <img id="modalImage" class="max-h-[90vh] max-w-[90vw] rounded-xl shadow-2xl" />
-    </div>
-  </div>
-  <div id="developerMenu"
-    class="absolute left-1/32 top-72 my-4 rounded-full p-2 w-1/8 bg-white flex flex-col justify-center items-center">
-    <div class="relative w-full">
-      <button onclick="toggleDropdown('developerDropdown')"
-        class="w-full bg-black border-black border-2 rounded-full text-white px-4 py-2 hover:bg-white hover:text-black">
-        Developer Menu
-      </button>
-      <div id="developerDropdown"
-        class="hidden absolute mt-2 w-full bg-white rounded-3xl shadow-lg flex flex-col p-2 space-y-2">
-        <button id="project1" class="bg-gray-100 px-4 py-2 text-left rounded-full hover:bg-gray-700 hover:text-white">
-          Project 1
-        </button>
-        <button id="project2" class="bg-gray-100 px-4 py-2 text-left rounded-full hover:bg-gray-700 hover:text-white">
-          Project 2
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div id="9DesignContainer">
-    <div id="tutorial"
-      class="absolute right-1/32 top-10 rounded-4xl h-64 w-1/8 bg-white flex flex-col justify-center items-center">
-
-      <p class="px-4 text-slate-800 font-bold">Tutorial</p>
-      <p class="px-4 py-2 text-slate-800 text-xs text-center">Click these buttons on keyboard or just click UI buttons
-        to
-        operate.</p>
-      <div class="relative w-5/6 py-1">
-        <button onclick="toggleDropdown('geometryDropdown')"
-          class="w-full bg-black hover:bg-white border-2 border-white hover:border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
-          Geometry
-        </button>
-        <div id="geometryDropdown" class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
-          <p class="border-b border-black pb-2 mb-2 font-medium">Press keys</p>
-          <button id="boxButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">1</span> Box</button>
-          <button id="sphereButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">2</span> Sphere</button>
-          <button id="coneButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">3</span> Cone</button>
-          <button id="cylinderButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">4</span>Cylinder</button>
-          <button id="capsuleButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">5</span> Capsule</button>
-          <button id="tetraButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">6</span> Tetrahedron</button>
-          <button id="octaButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">7</span> Octahedron</button>
-          <button id="dodecaButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">8</span> Dodecahedron</button>
-          <button id="torusknotButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">9</span> TorusKnot</button>
-          <button id="geometryRemoveButton"
-            class="w-full text-left px-2 py-1 rounded-lg text-rose-500 font-bold hover:bg-rose-100"><span
-              class="bg-red-500 text-white font-bolt rounded-sm px-2 mr-2">0</span> Remove
-            All</button>
-        </div>
-      </div>
-
-      <div class="relative w-5/6 py-1">
-        <button onclick="toggleDropdown('lightDropdown')"
-          class="w-full bg-black hover:bg-white border-2 border-white hover:border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
-          Lights
-        </button>
-        <div id="lightDropdown" class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
-          <p class="border-b border-black pb-2 mb-2 font-medium">Press keys</p>
-          <button id="ambientButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">a</span> Ambient</button>
-          <button id="directionalButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">d</span> Directional</button>
-          <button id="spotButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">s</span> Spotlight</button>
-          <button id="pointButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">p</span> PointLight</button>
-          <button id="rectButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">r</span> RectAreaLight</button>
-          <button id="removeLightButton"
-            class="w-full text-left px-2 py-1 rounded-lg text-rose-500 font-bold hover:bg-rose-100"><span
-              class="bg-red-500 text-white font-bolt rounded-sm px-2 mr-2">x</span> Remove All</button>
-        </div>
-      </div>
-
-      <div class="relative w-5/6 py-1">
-        <button onclick="toggleDropdown('cameraDropdown')"
-          class="w-full bg-black hover:bg-white border-2 border-white hover:border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
-          Camera
-        </button>
-        <div id="cameraDropdown" class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
-          <p class="border-b border-black pb-2 mb-2 font-medium">Press keys</p>
-          <button class="perspectiveButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">-</span> Perspective</button>
-          <button class="orthographicButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">=</span> Orthographic</button>
-        </div>
-      </div>
-
-      <div class="relative w-5/6 py-1">
-        <button onclick="toggleDropdown('materialDropdown')"
-          class="w-full bg-black hover:bg-white border-2 border-white hover:border-black hover:text-black font-mono text-white px-4 py-1 rounded-full">
-          Materials
-        </button>
-        <div id="materialDropdown" class="absolute right-full top-0 mt-2 bg-white shadow-lg rounded-lg p-3 hidden w-48">
-          <p class="border-b border-black pb-2 mb-2 font-medium">Press keys</p>
-          <button id="basicMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">[</span>Basic</button>
-          <button id="standardMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">]</span>Standard</button>
-          <button id="physicalMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">;</span> Physical</button>
-          <button id="phongMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">:</span> Phong</button>
-          <button id="toonMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">.</span> Toon</button>
-          <button id="lineMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">,</span> Line</button>
-          <button id="normalMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">?</span> Normal</button>
-          <button id="lambertMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">/</span> Lambert</button>
-          <button id="shadowMaterialButton" class="w-full text-left px-2 py-1 rounded-lg hover:bg-slate-200"><span
-              class="bg-black text-white font-bolt rounded-sm px-2 mr-2">+</span> Shadow</button>
-        </div>
-      </div>
-    </div>
-    <div id="info"
-      class="absolute right-1/32 bottom-10 w-60 h-110 bg-white rounded-3xl shadow-xl flex flex-col justify-start items-center p-6 space-y-4">
-
-      <h2 class="text-xl font-bold text-gray-900 mb-2">Scene Info</h2>
-      <p class="font-medium text-left w-full">Geometry:</p>
-      <p id="geometryInfo" class="w-full text-gray-800 font-medium bg-gray-100 px-3 py-1 rounded-lg shadow-inner">
-        Geometry: -</p>
-      <p class="font-medium text-left w-full">Material:</p>
-      <p id="materialInfo" class="w-full text-gray-800 font-medium bg-gray-100 px-3 py-1 rounded-lg shadow-inner">
-        Material: -</p>
-      <p class="font-medium text-left w-full"> Camera: </p>
-      <p id="cameraInfo" class="w-full text-gray-800 font-medium bg-gray-100 px-3 py-1 rounded-lg shadow-inner"> Camera:
-        -
-      </p>
-      <p class="font-medium text-left w-full">Light: </p>
-      <p id="lightInfo" class="w-full text-gray-800 font-medium bg-gray-100 px-3 py-1 rounded-lg shadow-inner">Light: -
-      </p>
-    </div>
-  </div>
-
-  <div id="ExtrudeContainer">
-    <div id="dimensions"
-      class="absolute right-1/32 top-10 w-80 p-6 bg-white rounded-3xl shadow-xl flex flex-col gap-4 z-10">
-      <h2 class="text-xl font-semibold text-gray-800 text-center border-b border-slate-300 pb-4">Enter Dimensions</h2>
-      <div class="flex flex-col">
-        <label for="widthInput" class="mb-1 text-gray-700 font-medium">Width</label>
-        <input type="text" id="widthInput" placeholder="Enter width"
-          class="p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
-      </div>
-      <div class="flex flex-col">
-        <label for="heightInput" class="mb-1 text-gray-700 font-medium">Height</label>
-        <input type="text" id="heightInput" placeholder="Enter height"
-          class="p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
-      </div>
-      <div class="flex flex-col">
-        <label for="radiusInput" class="mb-1 text-gray-700 font-medium">Radius of Hole</label>
-        <input type="text" id="radiusInput" placeholder="Enter radius"
-          class="p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
-      </div>
-
-      <div class="flex flex-col">
-        <label for="thicknessInput" class="mb-1 text-gray-700 font-medium">Thickness</label>
-        <input type="text" id="thicknessInput" placeholder="Enter Thickness"
-          class="p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
-      </div>
-      <button id="updateBtn"
-        class="mt-4 bg-black text-white font-semibold py-2 rounded-lg hover:bg-white hover:border-black border-white border-2 hover:text-black transition duration-200 shadow-md">
-        Update Mesh
-      </button>
-      <div class="w-full">
-        <div class="p-2 mb-4 font-medium">Camera Mode: </div>
-        <span
-          class="perspectiveButton px-4 py-2 bg-black font-medium text-white rounded-lg border-2 border-white hover:cursor-pointer hover:border-black hover:bg-white hover:text-black">P</span>
-        <span
-          class="orthographicButton px-4 py-2 bg-black font-medium text-white rounded-lg border-2 border-white hover:cursor-pointer hover:border-black hover:bg-white hover:text-black">O</span>
-      </div>
-    </div>
-    <div id="dimensionsCut"
-      class="absolute right-1/32 top-10 w-80 p-6 bg-white rounded-3xl shadow-xl flex flex-col gap-4 z-10">
-      <h2 class="text-xl font-semibold text-gray-800 text-center border-b border-slate-300 pb-4">Enter Dimensions</h2>
-      <div class="flex flex-col">
-        <label for="widthInput" class="mb-1 text-gray-700 font-medium">Width</label>
-        <input type="text" placeholder="Enter width"
-          class="widthInput p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
-      </div>
-      <div class="flex flex-col">
-        <label for="heightInput" class="mb-1 text-gray-700 font-medium">Height</label>
-        <input type="text" placeholder="Enter height"
-          class="heightInput p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
-      </div>
-
-      <div class="flex flex-col">
-        <label for="thicknessInput" class="mb-1 text-gray-700 font-medium">Thickness</label>
-        <input type="text" placeholder="Enter Thickness"
-          class="thicknessInput p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
-      </div>
-
-      <div class="flex flex-col">
-        <p class="mb-1 text-gray-700 font-medium">Cut Angles : </p>
-        <div class="flex w-full">
-          <input type="text" placeholder="Cut Angle 1"
-            class="cutInput1 w-1/2 p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
-          <input type="text" placeholder="Cut Angle 2"
-            class="cutInput2 w-1/2  p-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-300 outline-none transition duration-200" />
-        </div>
-
-      </div>
-      <button id="updateBtnE2"
-        class="mt-4 bg-black text-white font-semibold py-2 rounded-lg hover:bg-white hover:border-black border-white border-2 hover:text-black transition duration-200 shadow-md">
-        Update Mesh
-      </button>
-      <div class="w-full">
-        <div class="p-2 mb-4 font-medium">Camera Mode: </div>
-        <span
-          class="perspectiveButton px-4 py-2 bg-black font-medium text-white rounded-lg border-2 border-white hover:cursor-pointer hover:border-black hover:bg-white hover:text-black">P</span>
-        <span
-          class="orthographicButton px-4 py-2 bg-black font-medium text-white rounded-lg border-2 border-white hover:cursor-pointer hover:border-black hover:bg-white hover:text-black">O</span>
-      </div>
-    </div>
-    <div id="extrudeSelector"
-      class="absolute left-1/2 bottom-10 rounded-full h-20 min-w-1/8 bg-white flex justify-evenly items-center">
-      <button id="E1"
-        class="h-3/4 w-[40%] bg-black text-white rounded-full border-2 border-black hover:bg-white hover:text-black font-semibold text-xl">1</button>
-      <button id="E2"
-        class="h-3/4 w-[40%] bg-black text-white rounded-full border-2 border-black hover:bg-white hover:text-black font-semibold text-xl">2</button>
-    </div>
-  </div>
-
-
-
+        .animate-fill-100 {
+            animation: fill-100 2s forwards;
+        }
+        .animate-fill-75 {
+            animation: fill-75 2s forwards;
+        }
+    </style>
 </body>
 
 </html>
