@@ -1,13 +1,11 @@
 import * as THREE from 'three'
 import { scene } from '../Core/Scene';
-import { SUBTRACTION, Brush, Evaluator, INTERSECTION } from 'three-bvh-csg';
-import { ThreeMFLoader } from 'three/examples/jsm/Addons.js';
-import { BufferAttribute } from 'three/webgpu';
+
 
 let height = 5;
 let width = 20;
 let thickness = 5;
-let segments = 200;
+let segments = 50;
 let width1 = 2;
 let width2 = 2;
 let height1 = 2.5;
@@ -100,6 +98,9 @@ function cutShape(geometry) {
                 positionAttribute.setX(i,  width - (width2*(y - height2)/(height-height2)));
             }
         }
+        // if(x < width/2){
+        //     if(y === height) positionAttribute.setY(i, height - x);
+        // }
         if(z > thickness/2) positionAttribute.setZ(i,thickness-y/Math.tan(cutAngle1 * Math.PI/180))
         if(z < thickness/2) positionAttribute.setZ(i, y/Math.tan(Math.abs(180 - cutAngle2) * Math.PI/180))
     }

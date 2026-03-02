@@ -53,3 +53,18 @@ export function getMesh(){
         // if (vertex.z < thickness / 2) {
         //     if (vertex.y !== height2) positionAttribute.setZ(i, width2);
         // }
+
+
+        // const startPoint = new THREE.Vector3(0, 0, 0);
+        //     const endPoint = new THREE.Vector3(5, 5, 5);
+        // const curve = new THREE.LineCurve3(startPoint, endPoint);
+        
+        
+        // const points = curve.getPoints(50);
+        
+        
+        // const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        // const material = new THREE.LineBasicMaterial({ color: 0xff0000 });
+        // const line = new THREE.Line(geometry, material);
+        // scene.add(line);
+        

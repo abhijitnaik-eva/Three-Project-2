@@ -1,10 +1,12 @@
 import { createAxesHelper, createExtrudeShape, deleteExtrudeShape, removeAxesHelper } from "./Extruded1";
 import { createCutExtrudeShape, deleteCutExtrudeShape } from "./Extruded2";
 import { createCutExtrudeShapeE3, deleteCutExtrudeShapeE3 } from "./Extruded3";
+import { createExtrudeE4, deleteShapeE4 , deleteLines, createLight} from "./Extruded4";
 
 const dimensions = document.getElementById('dimensions');
 const dimensionsCut = document.getElementById('dimensionsCut');
 const dimensionsCutE3 = document.getElementById('dimensionsCutE3');
+const dimensionCutE4 = document.getElementById('dimensionsCutE4');
 
 document.getElementById('E1').addEventListener('click', () => {
     removeAxesHelper();
@@ -12,8 +14,11 @@ document.getElementById('E1').addEventListener('click', () => {
     dimensions.hidden = false;
     dimensionsCut.hidden = true;
     dimensionsCutE3.hidden = true;
+    dimensionCutE4.hidden = true;
+    deleteLines();
     deleteCutExtrudeShape();
     deleteCutExtrudeShapeE3();
+    deleteShapeE4();
     createExtrudeShape(10, 5, 1, 0.5)
 });
 
@@ -23,8 +28,11 @@ document.getElementById('E2').addEventListener('click', () => {
     dimensions.hidden = true;
     dimensionsCut.hidden = false;
     dimensionsCutE3.hidden = true;
+    dimensionCutE4.hidden = true;
+    deleteLines();
     deleteExtrudeShape();
     deleteCutExtrudeShapeE3();
+    deleteShapeE4();
     createCutExtrudeShape(5,5,15,45,135)
 });
 
@@ -33,9 +41,27 @@ document.getElementById('E3').addEventListener('click', () => {
     createAxesHelper();
     dimensions.hidden = true;
     dimensionsCut.hidden = true;
+    dimensionCutE4.hidden = true;
     dimensionsCutE3.hidden = false;
+    deleteLines();
     deleteExtrudeShape();
     deleteCutExtrudeShape();
+    deleteShapeE4();
     createCutExtrudeShapeE3(8,4,20,2,2,2,2, 45, 135)
 });
+
+document.getElementById('E4').addEventListener('click', () => {
+    removeAxesHelper();
+    createAxesHelper();
+    dimensions.hidden = true;
+    dimensionsCut.hidden = true;
+    dimensionsCutE3.hidden = true;
+    dimensionCutE4.hidden = false;
+    createLight();
+    deleteExtrudeShape();
+    deleteCutExtrudeShape();
+    deleteCutExtrudeShapeE3();
+    createExtrudeE4(32,32,4,4,8);
+});
+
 
