@@ -3,7 +3,7 @@ import { scene } from '../Core/Scene';
 
 
 let mesh = null;
-let width = 2, height = 2, segments = 1000;
+let width = 8, height = 8, segments = 100;
 let width1 = 2, width2 = 2, height1 = 2, height2 = 2;
 let originX = 0, originY = 0;
 
@@ -35,25 +35,32 @@ class Line {
 
 }
 
-export function createExtrude() {
-    const materialSetting = {
-        color: '#6769ff',
+
+const materialSetting = {
+        color: '#ffc75e',
         wireframe: false,
     }
 
-    const extrudeSettings = {
-        bevelEnabled: false,
-        depth: 5,
-    }
+const extrudeSettings = {
+    bevelEnabled: false,
+    depth: 5,
+}
 
+
+
+export function createC1Extrude() {
+    
+
+    // if (!checkRulesAngleEx(newWidth, newHeight, newThickness, newCutAngle1, newCutAngle2)) return;
+    deleteC1Shape();
 
     const lines1 = [
-        new Line(new Point(-2, 1), new Point(-1,2)),
-        new Line(new Point(-1, 0), new Point(-2, 1))
+        new Line(new Point(2, 0), new Point(-2, 4)),
+        new Line(new Point(-2, 4), new Point(2, 8)),
     ]
     const lines2 = [
-        new Line(new Point(3, 0), new Point(4, 1)),
-        new Line(new Point(4, 1), new Point(3, 2))
+        new Line(new Point(6, 0), new Point(10, 4)),
+        new Line(new Point(10, 4), new Point(6, 8))
     ]
     const shape = createShape();
 
@@ -69,8 +76,11 @@ export function createExtrude() {
     mesh = new THREE.Mesh(geometry, material);
     const outline = getOutline(geometry);
     mesh.add(outline);
-
     scene.add(mesh);
+}
+
+export function deleteC1Shape(){
+    if(scene.children.includes(mesh)) scene.remove(mesh);
 }
 
 function createShape() {
@@ -133,6 +143,19 @@ function cutShape(geometry, extrudeData) {
             }
         }
 
+        if(y === height){
+            let left = extrudeData.edge1[extrudeData.edge1.length-1].endPoint.x;
+            let right = extrudeData.edge2[extrudeData.edge2.length-1].endPoint.x;
+            if(x < left) positionAttribute.setX(i, left);
+            if(x > right) positionAttribute.setX(i, right);
+        }
+        if(y === originY){
+            let left = extrudeData.edge1[0].startPoint.x;
+            let right = extrudeData.edge2[0].startPoint.x;
+            if(x < left) positionAttribute.setX(i, left);
+            if(x > right) positionAttribute.setX(i, right);
+        }
+
     }
     positionAttribute.needsUpdate = true;
     geometry.computeVertexNormals();
@@ -144,3 +167,4 @@ function getOutline(geometry) {
     const outline = new THREE.LineSegments(edge, line);
     return outline;
 }
+

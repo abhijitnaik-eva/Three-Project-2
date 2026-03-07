@@ -130,6 +130,7 @@ const heightInput = document.querySelector('.heightInput');
 const thicknessInput = document.querySelector('.thicknessInput');
 const cut1Input = document.querySelector('.cutInput1');
 const cut2Input = document.querySelector('.cutInput2');
+const radiusInput = document.getElementById('radiusInputE2-2');
 
 const updateBtnE2 = document.getElementById('updateBtnE2');
 
@@ -137,8 +138,8 @@ updateBtnE2.addEventListener('click', () => {
     const width = Number(widthInput.value);
     const height = Number(heightInput.value);
     const thickness = Number(thicknessInput.value);
-    const cut1 = Number(cut1Input.value)
-    const cut2 = Number(cut2Input.value)
+    const cut1 = Number(cut1Input.value);
+    const cut2 = Number(cut2Input.value);
 
     if (width === 0 || height === 0 || thickness === 0 || cut1 === 0 || cut2 === 0) {
         alert("Please enter all numbers!");
@@ -147,3 +148,10 @@ updateBtnE2.addEventListener('click', () => {
 
     createCutExtrudeShape(width, height, thickness, cut1, cut2);
 });
+
+const radiusInputE2_2 = document.getElementById('radiusInputE2-2')
+const thicknessInputE2_2 = document.querySelector('thicknessInputE2-2');
+const cut1InputE2_2 = document.querySelector('cutInput1E2-2');
+const cut2InputE2_2 = document.querySelector('cutInput2E2-2');
+
+const updateBtnE2_2 = document.getElementById('updateBtnE2-2');

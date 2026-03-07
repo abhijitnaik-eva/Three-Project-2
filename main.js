@@ -9,6 +9,7 @@ import './Project-1/ButtonsLogic'
 import './Project-2/Extruded1';
 import './Project-2/Extruded2';
 import './Project-2/ExtrudedController';
+import './Project-3/CuttingController';
 import './ProjectController';
 
 scene.add(ambientLight);

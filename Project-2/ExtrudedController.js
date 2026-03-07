@@ -10,6 +10,9 @@ const extrudeE3 = document.getElementById('ExtrudeE3');
 const extrudeE4 = document.getElementById('ExtrudeE4');
 const extrudeE5 = document.getElementById('ExtrudeE5')
 
+const subsectionE2 = document.getElementById('subsectionE2')
+const subsectionE5 = document.getElementById('subsectionE5')
+
 const panels = {
     extrudeE1,
     extrudeE2,
@@ -17,9 +20,17 @@ const panels = {
     extrudeE4,
     extrudeE5
 };
+const subsections = {
+    subsectionE2,
+    subsectionE5
+}
 
 function hideAllPanels() {
     Object.values(panels).forEach(panel => panel.hidden = true);
+}
+
+function hideAllSubsections() {
+    Object.values(subsections).forEach(sub => sub.hidden = true);
 }
 
 function resetScene() {
@@ -44,6 +55,7 @@ const actions = {
         createAxesHelper();
         panels.extrudeE2.hidden = false;
         createCutExtrudeShape(5,5,15,45,135);
+        subsections.subsectionE2.hidden = false;
     },
 
     E3: () => {
@@ -62,13 +74,17 @@ const actions = {
         createAxesHelper();
         panels.extrudeE5.hidden = false;
         createExtrudeE5(8,6,10,2);
+        subsections.subsectionE5.hidden = false;
     }
 };
+
+
 
 Object.keys(actions).forEach(id => {
     document.getElementById(id).addEventListener("click", () => {
         resetScene();
         hideAllPanels();
+        hideAllSubsections();
         actions[id]();
     });
 });

@@ -4,7 +4,8 @@ import { setProject } from "./main";
 import { createGeometries } from "./Project-1/Geometries";
 import { createRoom } from "./Project-1/Ground";
 import { createAxesHelper } from "./Project-2/Extruded1";
-import { createExtrude } from "./Project-3/Cutting1";
+import { createC1Extrude } from "./Project-3/Cutting1";
+import { createC2Extrude } from "./Project-3/Cutting2";
 
 const tutorial = document.getElementById("tutorial");
 const info = document.getElementById("info");
@@ -27,6 +28,7 @@ function showProject(project) {
 
     project1Container.hidden = project !== 1;
     project2Container.hidden = project !== 2;
+    project3Container.hidden = project !== 3;
 
     resetScene();
 
@@ -49,7 +51,7 @@ function showProject(project) {
         createAxesHelper();
         tutorial.hidden = true;
         info.hidden = true;
-        createExtrude();
+        createC2Extrude(2, 15, 30, 5, 1.5, 1, 1);
     }
 }
 
