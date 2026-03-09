@@ -73,7 +73,8 @@ export function createC2Extrude(newWidth1, newWidth, newHeight, newThickness, ne
 
     parentMesh.add(child1Mesh);
     parentMesh.add(child2Mesh);
-    scene.add(parentMesh);
+    // parentMesh.rotation.z = Math.PI;
+;    scene.add(parentMesh);
 }
 
 export function deleteC2Shape() {
@@ -85,9 +86,9 @@ function cutShapeParent() {
     parent.lineTo(widthx / 2 + width1 + originX, originY + height / 4);
     parent.lineTo(widthx + width1 + originX, originY);
     parent.lineTo(width + originX, height + originY);
-    parent.absarc(width + originX, height / 2 + originY, width, Math.PI / 2, 3.55 * Math.PI / 4, false);
+    parent.absarc(width + originX, 2*height / 3 + originY, width, Math.PI / 2, Math.PI , false);
     parent.lineTo(width1 + originX, 2 * height / 3 + originY);
-    parent.lineTo(width1 + originX, originY + originY);
+    parent.lineTo(width1 + originX, originY);
 
 
     const holeD = new THREE.Path();
@@ -104,12 +105,13 @@ function cutShapeParent() {
 function cutShapeC1() {
 
     const child1 = new THREE.Shape();
-    child1.moveTo(widthx / 4 + width1 + originX, height / 4 + originY);
-    child1.lineTo(3 * widthx / 4 + width1 + originX, height / 4 + originY);
-    child1.absarc(3 * widthx / 4 + width1 + originX, height / 3 + originY, height / 12, 3 * Math.PI / 2, Math.PI / 2, false);
-    child1.lineTo(widthx / 4 + width1 + originX, 5 * height / 12 + originY);
-    child1.absarc(widthx / 4 + width1 + originX, height / 3 + originY, height / 12, Math.PI / 2, 3 * Math.PI / 2, false);
-    child1.lineTo(widthx / 4 + width1 + originX, height / 4 + originY);
+    let x = (widthx/4 - height/12);
+    child1.moveTo(widthx / 4 + width1 + originX - x, height / 4 + originY);
+    child1.lineTo(3 * widthx / 4 + width1 + originX + x, height / 4 + originY);
+    child1.absarc(3 * widthx / 4 + width1 + originX + x, height / 3 + originY, height / 12, 3 * Math.PI / 2, Math.PI / 2, false);
+    child1.lineTo(widthx / 4 + width1 + originX - x, 5 * height / 12 + originY);
+    child1.absarc(widthx / 4 + width1 + originX - x, height / 3 + originY, height / 12, Math.PI / 2, 3 * Math.PI / 2, false);
+    child1.lineTo(widthx / 4 + width1 + originX - x, height / 4 + originY);
 
     const holed1 = new THREE.Path();
     holed1.absarc(widthx / 4 + width1 + originX, height / 3 + originY, radius2, 0, Math.PI * 2, false);

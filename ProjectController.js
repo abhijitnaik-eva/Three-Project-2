@@ -36,6 +36,7 @@ function showProject(project) {
         createRoom();
         createGeometries();
         setProject(1);
+        ambientLight.intensity = 2
 
         tutorial.hidden = false;
         info.hidden = false;
@@ -43,6 +44,7 @@ function showProject(project) {
 
     if (project === 2) {
         createAxesHelper();
+        ambientLight.intensity = 8
         tutorial.hidden = true;
         info.hidden = true;
     }

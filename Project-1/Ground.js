@@ -1,12 +1,27 @@
 import * as THREE from 'three';
 import { scene } from '../Core/Scene';
 
-const geometry = new THREE.PlaneGeometry(25, 25);
+
+
+const loader = new THREE.TextureLoader();
+const pavingStoneMaterial = new THREE.MeshStandardMaterial({
+    side: THREE.DoubleSide,
+    map: loader.load("/Images/Textures/PavingStones142/PavingStones142_1K-JPG_Color.jpg"), 
+    normalMap: loader.load("./Images/Textures/PavingStones142/PavingStones142_1K-JPG_NormalGL.jpg"),
+    roughnessMap: loader.load("./Images/Textures/PavingStones142/PavingStones142_1K-JPG_Roughness.jpg"),
+    displacementMap: loader.load("Images/Textures/PavingStones142/PavingStones142_1K-JPG_Displacement.jpg"),
+    displacementScale: 0.5
+});
+// pavingStoneMaterial.map.wrapS = THREE.RepeatWrapping;
+// pavingStoneMaterial.map.wrapT = THREE.RepeatWrapping;
+// pavingStoneMaterial.map.repeat.set(4,4);
+
+const geometry = new THREE.PlaneGeometry(25, 25, 256, 256);
 const wallGeometry = new THREE.PlaneGeometry(25, 15);
 const material = new THREE.MeshStandardMaterial({color: '#2b2828', side: THREE.DoubleSide, metalness: 0.9 });
 const wallMaterial = new THREE.MeshStandardMaterial({color: '#1f1f1f', side: THREE.DoubleSide, metalness: 0.9 });
 const room = new THREE.Object3D();
-const plane = new THREE.Mesh(geometry, material);
+const plane = new THREE.Mesh(geometry, pavingStoneMaterial);
 
 
 const wallLeft = new THREE.Mesh(wallGeometry, wallMaterial);
@@ -23,19 +38,20 @@ const wallBack = new THREE.Mesh(wallGeometry, wallMaterial);
 wallBack.position.z = -12.5;
 wallBack.position.y = 7.5;
 
-plane.rotation.x = Math.PI/2;
+plane.rotation.x = -Math.PI/2;
 plane.receiveShadow = true;
 wallLeft.receiveShadow = true;
 wallRight.receiveShadow = true;
 wallBack.receiveShadow = true;
 
+
+
+
+
 room.add(plane);
 room.add(wallLeft);
 room.add(wallRight);
 room.add(wallBack);
-
-
-
 
 export function createRoom(){
     scene.add(room);

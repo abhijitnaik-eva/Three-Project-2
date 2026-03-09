@@ -2,9 +2,9 @@ import * as THREE from 'three';
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/Addons.js';
 import { scene } from './Scene';
 
-export const ambientLight = new THREE.AmbientLight('white', 10);
+export const ambientLight = new THREE.AmbientLight('white', 2);
 
-const directionalLight = new THREE.DirectionalLight('white', 5);
+const directionalLight = new THREE.DirectionalLight('white', 3);
 directionalLight.position.set(10, 20, 10)
 directionalLight.castShadow = true;
 directionalLight.lookAt(0, 0, 0);

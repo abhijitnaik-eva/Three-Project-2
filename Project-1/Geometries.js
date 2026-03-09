@@ -16,8 +16,8 @@ const geometryEdge = new THREE.EdgesGeometry()
 
 //#region Materials
 const basicMaterial = new THREE.MeshBasicMaterial({ color : '#355872'})
-const standardMaterial = new THREE.MeshStandardMaterial({ color : '#22399e', roughness: 0, metalness: 0.7})
-const physicalMaterial = new THREE.MeshPhysicalMaterial({ color : '#A82323', iridescence: 1, clearcoat: 0.9})
+const standardMaterial = new THREE.MeshStandardMaterial({ color : '#90f556', roughness: 0, metalness: 0.7})
+const physicalMaterial = new THREE.MeshPhysicalMaterial({ color : '#e44242', iridescence: 1, clearcoat: 0.9})
 const phongMaterial = new THREE.MeshPhongMaterial({ color : '#3258ff', shininess: 100, emissive: '#000000' , specular : '#ffffff'})
 const toonMaterial = new THREE.MeshToonMaterial({ color : '#049ef4'})
 const lineDashedMaterial = new THREE.LineDashedMaterial({color: 0xffffff, scale: 1, dashSize: 3, gapSize: 1,})

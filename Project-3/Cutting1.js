@@ -37,7 +37,7 @@ class Line {
 
 
 const materialSetting = {
-        color: '#ffc75e',
+        color: '#f75c70',
         wireframe: false,
     }
 
