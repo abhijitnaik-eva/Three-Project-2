@@ -1,13 +1,16 @@
 import { createAxesHelper, removeAxesHelper } from "../Project-2/Extruded1";
 import { createC1Extrude, deleteC1Shape } from "./Cutting1";
 import { createC2Extrude, deleteC2Shape } from "./Cutting2";
+import { createWindow, disposeWindow } from "./Test_2";
 
 const cuttingC1 = document.getElementById('CuttingC1')
 const cuttingC2 = document.getElementById('CuttingC2')
+const test2 = document.getElementById('Test2')
 
 const panels = {
     cuttingC1,
-    cuttingC2
+    cuttingC2,
+    test2,
 }
 
 function hideAllPanels() {
@@ -18,6 +21,7 @@ function resetScene() {
     removeAxesHelper();
     deleteC1Shape();
     deleteC2Shape();
+    disposeWindow();
 }
 
 const actions = {
@@ -33,6 +37,13 @@ const actions = {
         panels.cuttingC2.hidden = false;
         createC2Extrude(2, 15, 30, 5, 1.5, 1, 1);
     },
+
+    T2 : () => {
+        panels.test2.hidden = false;
+        createWindow(60, 60, 0,0,0,0,0,0);
+
+        
+    }
 };
 
 Object.keys(actions).forEach(id => {

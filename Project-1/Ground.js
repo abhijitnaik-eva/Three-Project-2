@@ -44,10 +44,6 @@ wallLeft.receiveShadow = true;
 wallRight.receiveShadow = true;
 wallBack.receiveShadow = true;
 
-
-
-
-
 room.add(plane);
 room.add(wallLeft);
 room.add(wallRight);

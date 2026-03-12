@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import { scene } from './Scene';
 
 
-const far = 1000000;
-const near = 0.001;
+const far = 1000;
+const near = 0.1;
 //#region Perspective Camera
 const perspectiveCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.001, far);
 perspectiveCamera.position.z = 10;
@@ -24,7 +24,7 @@ orthographicCamera.lookAt(0, 0, 0);
 
 
 export let camera = new THREE.Camera()
-camera = orthographicCamera;
+camera = perspectiveCamera;
 
 const cameraText = document.getElementById('cameraInfo')
 updateCameraText();
