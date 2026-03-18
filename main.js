@@ -12,6 +12,7 @@ import './Project-2/ExtrudedController';
 import './Project-3/CuttingController';
 import './Project-4/Project4Controller'
 import './ProjectController';
+import './Project-4/Project4Frontend';
 
 scene.add(ambientLight);
 

@@ -2,7 +2,8 @@ import * as THREE from 'three'
 import { scene } from '../Core/Scene'
 import { FontLoader, TextGeometry, ThreeMFLoader } from 'three/examples/jsm/Addons.js'
 import { camera } from '../Core/Camera';
-
+import { disposeHandle, getCAD } from './Hardware';
+import { lineHandleGHH, lineHandlePosition } from './Project4Frontend';
 
 let depth = 0
 
@@ -16,16 +17,18 @@ let currentFont = null
 // let frameWidth = 20
 // let frameHeight = 20
 
-let group = null;
-export function createLine() {
-    group = new THREE.Group();
-    const frameWidth = 20
-    const frameHeight = 200
+let sectionGroup = null;
+export function createLine(fw = 50, fh = 50, fh1 = 2, foff = 0, bh = 1, boff = 2) {
+
+    disposeLine();
+    sectionGroup = new THREE.Group();
+    const frameWidth = fw
+    const frameHeight = fh
 
     camera.position.z = (frameWidth > frameHeight) ? frameWidth : frameHeight;
 
-    const sash = new Frame(2)
-    const bead = new Bead(1, 2)
+    const sash = new Frame(fh1, foff);
+    const bead = new Bead(bh, boff);
 
     const windowPolygon = new THREE.Group();
     const outerFrame = createPolygon(frameWidth, frameHeight, sash);
@@ -62,12 +65,14 @@ export function createLine() {
             const tabelTextSize = (tableWidth > tableHeight) ? tableWidth * 0.012 : tableHeight * 0.012;
             const table = createTable(font, tableWidth, tableHeight, tabelTextSize);
             table.position.set((borderWidth - tableWidth) / 2, borderHeight / 2, 0);
-            scene.add(table)
+            //scene.add(table)
+            sectionGroup.add(table);
 
             const cardTextSize = devCardHeight * 0.08;
             const developerCard = createDeveloperCard(devCardWidth, devCardHeight, font, cardTextSize)
             developerCard.position.set(borderOriginX + 2, -borderOriginY - devCardHeight - 2, 0)
-            scene.add(developerCard)
+            //scene.add(developerCard)
+            sectionGroup.add(developerCard);
 
             const widthDim = createDimensions(frameWidth, frameHeight, 2, font);
             windowPolygon.add(widthDim);
@@ -82,10 +87,47 @@ export function createLine() {
     const posX = borderOriginX + 1, posY = borderOriginY + 1
     const bottomBox = createBottomBox(posX, posY, bottomBoxWidth, bottomBoxHeight, 4);
 
-    scene.add(windowPolygon, borderLine, bottomBox);
+    //scene.add(windowPolygon, borderLine, bottomBox);
+    setHandleLine()
+
+    //sectionGroup.add(line);
+    
+    sectionGroup.add(windowPolygon, borderLine, bottomBox);
+    scene.add(sectionGroup);
 
 }
+let handleLine;
+function setHandleLine(position = 'right', fw = 50, fh = 50, fh1 = 2, foff = 0, bh = 1, boff = 2){
 
+    let ghh;
+    disposeHandleLine();
+    handleLine = getCAD();
+    if(!lineHandlePosition) position = 'right';
+    else position = lineHandlePosition;
+
+    switch(position){
+        case 'bottom' : handleLine.position.y = -fh/2 + 2/2; handleLine.rotation.z = Math.PI/2;
+            break;
+        case 'right' : handleLine.position.x = fw/2 - 2/2; //handleLine.position.y=lineHandleGHH/fh;
+            handleLine.scale.x *= -1;
+            break;
+        case 'top' : handleLine.position.y = fh/2 - 2/2; handleLine.rotation.z = 3*Math.PI/2;
+            break;
+        case 'left' : handleLine.position.x = -fw/2 + 2/2;
+            break;
+    }
+    
+    scene.add(handleLine);
+}
+
+export function disposeHandleLine(){
+    if(scene.children.includes(handleLine)) scene.remove(handleLine);
+}
+
+
+export function disposeLine(){
+    if(scene.children.includes(sectionGroup)) scene.remove(sectionGroup);
+}
 
 // BORDER
 function createBorder(originX, originY, width, height) {
@@ -705,3 +747,27 @@ function createRightArrow(size = 1) {
 
     return new THREE.Line(geometry, material);
 }
+
+//#region sectioning
+// TEST3 FRONTEND
+// const T1Width = document.getElementById("T1WindowW");
+// const T1Height = document.getElementById("T1WindowH");
+
+// const updateBtnT1 = document.getElementById("updateBtnT1");
+
+// updateBtnT1.addEventListener("click", () => {
+//     const scaleDiv = 1;
+//     const width = Number(T1Width.value) / scaleDiv;
+//     const height = Number(T1Height.value) / scaleDiv;
+
+//     if (
+//         width === 0 &&
+//         height === 0
+//     ) {
+//         alert("Please enter valid numbers!");
+//         return;
+//     }
+
+//     createLine(width, height);
+// });
+//#endregion
